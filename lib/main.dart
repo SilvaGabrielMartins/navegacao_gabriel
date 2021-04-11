@@ -57,15 +57,17 @@ class _MyPageState extends State<MyPage> {
                     backgroundColor: Colors.blue,
                     maxRadius: 30.0,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text('Max'),
                         Text('Valor'),
                       ],
                     )),
                 CircleAvatar(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.red,
                     maxRadius: 30.0,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text('Min'),
                         Text('Valor'),
@@ -77,14 +79,16 @@ class _MyPageState extends State<MyPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  child: Text('Adicionar'),
+                  child:
+                      Text('Adicionar', style: TextStyle(color: Colors.black)),
                   onPressed: _contar,
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.cyan[200])),
+                          MaterialStateProperty.all<Color>(Colors.white)),
                 ),
                 ElevatedButton(
-                  child: Text('Subtrair'),
+                  child:
+                      Text('Subtrair', style: TextStyle(color: Colors.white)),
                   onPressed: () {
                     setState(() {
                       if (contadorButao == 0) {
@@ -99,7 +103,7 @@ class _MyPageState extends State<MyPage> {
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.cyan[200])),
+                          MaterialStateProperty.all<Color>(Colors.black)),
                 ),
               ],
             ),
@@ -107,16 +111,18 @@ class _MyPageState extends State<MyPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  child: Text('Adicionar (+2)'),
+                  child: Text('Adicionar (+2)',
+                      style: TextStyle(color: Colors.black)),
                   onPressed: () {
                     _contar(quantidade: 2);
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.cyan[200])),
+                          MaterialStateProperty.all<Color>(Colors.white)),
                 ),
                 ElevatedButton(
-                  child: Text('Subtrair (-2)'),
+                  child: Text('Subtrair (-2)',
+                      style: TextStyle(color: Colors.white)),
                   onPressed: () {
                     setState(() {
                       if (contadorButao == 0) {
@@ -131,7 +137,7 @@ class _MyPageState extends State<MyPage> {
                   },
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.cyan[200])),
+                          MaterialStateProperty.all<Color>(Colors.black)),
                 ),
               ],
             ),
