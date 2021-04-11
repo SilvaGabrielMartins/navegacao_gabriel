@@ -24,12 +24,15 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  int contadorButao = 0;
+  int contadorButao = 0, valorMaximo = 0, valorMinimo = 0;
 
   void _contar({int quantidade = 1}) {
     setState(() {
       contadorButao += quantidade;
       print(contadorButao);
+      if (contadorButao > valorMaximo) {
+        valorMaximo = contadorButao;
+      }
     });
   }
 
@@ -60,7 +63,7 @@ class _MyPageState extends State<MyPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text('Max'),
-                        Text('Valor'),
+                        Text('$valorMaximo'),
                       ],
                     )),
                 CircleAvatar(
@@ -70,7 +73,7 @@ class _MyPageState extends State<MyPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text('Min'),
-                        Text('Valor'),
+                        Text('$valorMinimo'),
                       ],
                     ))
               ],
@@ -98,6 +101,9 @@ class _MyPageState extends State<MyPage> {
                                     'Impossível subtrair contagem de zero')));
                       } else {
                         contadorButao--;
+                        if (contadorButao < valorMinimo) {
+                          valorMinimo = contadorButao;
+                        }
                       }
                     });
                   },
@@ -132,6 +138,9 @@ class _MyPageState extends State<MyPage> {
                                     'Impossível subtrair contagem de zero')));
                       } else {
                         contadorButao -= 2;
+                        if (contadorButao < valorMinimo) {
+                          valorMinimo = contadorButao;
+                        }
                       }
                     });
                   },
@@ -144,6 +153,13 @@ class _MyPageState extends State<MyPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.refresh),
+          onPressed: () {
+            setState(() {
+              contadorButao = 0;
+            });
+          }),
     );
   }
 }
