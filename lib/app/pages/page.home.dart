@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navegacao_gabriel/app/shared/widgets/buttons/widget.button.default.dart';
 import 'package:navegacao_gabriel/app/shared/widgets/circleAvatars/widget.circleAvatar.default.dart';
 
 class PageHome extends StatefulWidget {
@@ -14,9 +15,22 @@ class _PageHomeState extends State<PageHome> {
   void _contar({int quantidade = 1}) {
     setState(() {
       contadorButao += quantidade;
-      print(contadorButao);
       if (contadorButao > valorMaximo) {
         valorMaximo = contadorButao;
+      }
+    });
+  }
+
+  void _decrementar({int quantidade = 1}) {
+    setState(() {
+      if (contadorButao == 0) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Impossível subtrair contagem de zero')));
+      } else {
+        contadorButao -= quantidade;
+        if (contadorButao < valorMinimo) {
+          valorMinimo = contadorButao;
+        }
       }
     });
   }
@@ -58,73 +72,30 @@ class _PageHomeState extends State<PageHome> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    child: Text('Adicionar',
-                        style: TextStyle(color: Colors.black)),
-                    onPressed: _contar,
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white)),
-                  ),
-                  ElevatedButton(
-                    child:
-                        Text('Subtrair', style: TextStyle(color: Colors.white)),
-                    onPressed: () {
-                      setState(() {
-                        if (contadorButao == 0) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      'Impossível subtrair contagem de zero')));
-                        } else {
-                          contadorButao--;
-                          if (contadorButao < valorMinimo) {
-                            valorMinimo = contadorButao;
-                          }
-                        }
-                      });
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black)),
+                  WidgetButtonDefault(
+                      texto: 'Adicionar',
+                      corBotao: Colors.cyan[200],
+                      funcao: _contar),
+                  WidgetButtonDefault(
+                    texto: 'Adicionar (+2)',
+                    corBotao: Colors.cyan[200],
+                    funcao: _contar,
+                    quantidade: 2,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    child: Text('Adicionar (+2)',
-                        style: TextStyle(color: Colors.black)),
-                    onPressed: () {
-                      _contar(quantidade: 2);
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white)),
+                  WidgetButtonDefault(
+                    texto: 'Subtrair',
+                    funcao: _decrementar,
                   ),
-                  ElevatedButton(
-                    child: Text('Subtrair (-2)',
-                        style: TextStyle(color: Colors.white)),
-                    onPressed: () {
-                      setState(() {
-                        if (contadorButao == 0) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      'Impossível subtrair contagem de zero')));
-                        } else {
-                          contadorButao -= 2;
-                          if (contadorButao < valorMinimo) {
-                            valorMinimo = contadorButao;
-                          }
-                        }
-                      });
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.black)),
-                  ),
+                  WidgetButtonDefault(
+                    texto: 'Subtrair (-2)',
+                    funcao: _decrementar,
+                    quantidade: 2,
+                  )
                 ],
               ),
             ],
