@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navegacao_gabriel/app/shared/widgets/buttons/widget.button.default.dart';
 import 'package:navegacao_gabriel/app/shared/widgets/circleAvatars/widget.circleAvatar.default.dart';
+import 'package:navegacao_gabriel/app/pages/page1.dart';
 
 class PageHome extends StatefulWidget {
   PageHome({Key key}) : super(key: key);
@@ -96,6 +97,21 @@ class _PageHomeState extends State<PageHome> {
                     funcao: _decrementar,
                     quantidade: 2,
                   )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      child: Text('Vai para a próxima página (1)'),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/page1',
+                            arguments: "Veio da página home");
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (BuildContext context) => Page1()));
+                      }),
                 ],
               ),
             ],
