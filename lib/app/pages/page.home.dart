@@ -24,7 +24,7 @@ class _PageHomeState extends State<PageHome> {
 
   void _decrementar({int quantidade = 1}) {
     setState(() {
-      if (contadorButao == 0) {
+      if (contadorButao < 2) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Impossível subtrair contagem de zero')));
       } else {
@@ -56,20 +56,20 @@ class _PageHomeState extends State<PageHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '$contadorButao',
+                'Contagem: $contadorButao',
                 style: TextStyle(
                   fontSize: 35.0,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  WidgetCircleAvatarDefault(
-                      texto: 'Max', valor: '$valorMaximo'),
-                  WidgetCircleAvatarDefault(
-                      texto: 'Min', valor: '$valorMinimo', cor: Colors.red),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     WidgetCircleAvatarDefault(
+              //         texto: 'Max', valor: '$valorMaximo'),
+              //     WidgetCircleAvatarDefault(
+              //         texto: 'Min', valor: '$valorMinimo', cor: Colors.red),
+              //   ],
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -103,10 +103,10 @@ class _PageHomeState extends State<PageHome> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                      child: Text('Vai para a próxima página (1)'),
+                      child: Text('Mostrar maior contagem obtida'),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/page1',
-                            arguments: "Veio da página home");
+                        Navigator.pushNamed(context, '/page1/',
+                            arguments: valorMaximo);
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(

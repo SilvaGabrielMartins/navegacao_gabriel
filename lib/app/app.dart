@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => PageHome(),
-        '/page1': (context) => Page1(),
+        '/page1/': (context) => Page1(),
         '/page2': (context) => Page2(),
         '/page3': (context) => Page3(),
       },
